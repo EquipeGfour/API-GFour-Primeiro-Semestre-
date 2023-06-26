@@ -1,0 +1,86 @@
+﻿{% extends "base.html" %}
+{% block contents %}
+<title>Visualização de Usuario</title>
+<body>
+    <form action="cadastro" method="post" >
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div style="font-weight: bold;font-size: small;  color: red;font-family: Arial;margin:1%;"  class="notification is-danger">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+
+
+
+ <div id="main" class="container-fluid col-md-10 my-5  ">
+  <h3 class="page-header" style="font-size: 25px;"><strong>Usuario #{{usuario.idUsuario }}</strong></h3>
+  
+  <div class="row">
+    <div class="col-md-3">
+      <p style="font-size: 15px;"><strong>ID</strong></p>
+  	  <p style="font-size: 15px;">{{ usuario.idUsuario }}</p>
+    </div>
+	
+	<div class="col-md-3">
+      <p style="font-size: 15px;"><strong>Nome</strong></p>
+  	  <p style="font-size: 15px;">{{ usuario.nomeUsuario }}</p>
+    </div>
+      <div class="col-md-3">
+      <p style="font-size: 15px;"><strong>Email</strong></p>
+  	  <p style="font-size: 15px;">{{ usuario.emailUsuario }}</p>
+    </div>
+	
+	<div class="col-md-3">
+      <p style="font-size: 15px;"><strong>Tipo Usuário</strong></p>
+  	  <p style="font-size: 15px;">{{ usuario.tipoUsuario }}</p>
+    </div>
+
+ </div>
+ 
+ <hr />
+ <div id="actions" class="row">
+   <div class="col-md-12">
+     <a href="/admin" class="btn btn-primary" style="background: rgb(65, 65, 65);border-color:rgb(154, 154, 158);; ">Fechar</a>
+	 <a href="/edit/{{ usuario.idUsuario }}" class="btn btn-primary" style="background: rgb(65, 65, 65);border-color:rgb(154, 154, 158); ">Editar</a>
+	 <a href="#" 
+    class="btn btn-danger" 
+    data-bs-toggle="modal" 
+    data-bs-target="#deleteModal" 
+    onclick="confirmar_delete({{ usuario.idUsuario }})" >Excluir</a>
+   </div>
+ </div>
+     <!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modalLabel">Excluir Item</h4>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+      <div class="modal-body" style="font-size: 15px;">
+        Deseja realmente excluir este item?
+      </div>
+      <div class="modal-footer">
+	    <button 
+        type="button" class="btn btn-secondary" data-bs-dismiss="modal" 
+        style="background: rgb(65, 65, 65);
+                border-color:rgb(154, 154, 158);">Não</button>
+      <a id="confirmar" class="btn btn-danger btn-xs"   >Sim</a>
+</div>
+    </div>
+  </div>
+</div>
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    function confirmar_delete(idUsuario){
+        $("#confirmar").attr("href",`/deletar/${idUsuario}`)
+    }
+</script>
+<!-- Latest compiled and minified JavaScript -->
+
+</body>
+{% endblock %}
+</html>

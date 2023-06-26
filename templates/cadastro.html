@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/Novo_Cadastro.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="shortcut icon" href="..\static\img\favicon1.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="../static/css/novanav.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+    <title>Cadastro</title>
+</head>
+<style>
+    body::-webkit-scrollbar {
+width: 15px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+background: #ffffff;        /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+background-color: #e1e1e3;    /* color of the scroll thumb */
+border-radius: 5px;       /* roundness of the scroll thumb */
+border: 1.5px solid rgb(0, 0, 0);  /* creates padding around scroll thumb */
+}
+</style>
+<body style="background-color: #e1e1e3">
+                    
+    <header class="header">
+        <a href="https://fatecsjc-prd.azurewebsites.net/" id="logo"> <img src="../static/img/favicon.png" width="60" height="60" class="d-inline-block align-top" alt="">Fa<span>tec</span></a>
+        
+        </ul>
+      </header>
+
+  </button>
+
+</nav>
+<div class="frame-title mt-5">
+    <h4>CADASTRO NOVO USUÁRIO</h4>
+</div>
+<div class="frame">
+    <form action="cadastro" method="post" >
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div style="font-weight: bold;font-size: small;  color: red;font-family: Arial;"  class="notification is-danger text-center ">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+        <div   class="form-group">
+            <input   type="text" class="form-control form-control-lg" id="nome" name="nome" placeholder="Nome Usuário">
+            <input style="margin-top:1%;"  type="email" class="form-control form-control-lg" id="email" name="email"  placeholder="Email">
+            <input style="margin-top: 1%"  type="password" class="form-control form-control-lg" id="pwd" name="pwd"  placeholder="Senha">
+            <input style="margin-top: 1%"  type="password" class="form-control form-control-lg" id="cpwd"  name="cpwd" placeholder="Confirma Senha">
+
+
+        </div>
+
+        <div class="frame_buttom_0.1 text-center">
+            <button type="submit" 
+            style="
+                width: 150px;
+                height: 50px;
+                background: rgb(65, 65, 65);
+                border-color:rgb(154, 154, 158);;" class="btn btn-secondary btn-lg">CADASTRAR</button>
+        
+    
+        
+            <a href="{{ url_for ('logout')}}"><button  style="width: 150px;;background: rgb(65, 65, 65);border-color:rgb(154, 154, 158);height: 51px;"  type="button" class="btn btn-secondary btn-lg">SAIR</button></a>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+</body>
+</html>
+
+

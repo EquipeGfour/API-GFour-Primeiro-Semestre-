@@ -1,0 +1,119 @@
+﻿
+ {% extends "base.html" %}
+ {% block contents %}
+ <title>Adminstração</title>
+<body>
+	<div class="text-center w-100">
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<div style="font-weight: bold;font-size: small;  color: red;font-family: Arial;margin:1%;"  class="notification is-danger">
+					{{ messages[0] }}
+				</div>
+			{% endif %}
+		{% endwith %}
+	</div>
+ 
+ <div id="main" class="container-fluid" style="margin-top: 20px">
+ 
+
+		
+		</div>
+	</div> <!-- /#top -->
+ 
+ 
+
+ 	<div id="list" class="cow">
+	
+	<div class="table-responsive mx-auto w-75 my-3" style="margin-left: 6%;">
+		<table class="table table-striped" cellspacing="0" cellpadding="0" >
+			<thead>
+				<tr class="text-center">
+					<th style="font-size: 15px;">ID</th>
+					<th style="font-size: 15px;">Nome</th>
+                    <th style="font-size: 15px;">Email</th>
+					<th style="font-size: 15px;">Cargo</th>
+					<th class="text-center col-md-3" style="font-size: 15px; ">Grupo</th>
+					<th style="font-size: 15px;" class="actions text-center col-md-3">Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+                {% for usuario in usuarios  %}
+
+				<tr class="text-center" style="font-size: 15px;">
+					<td>{{usuario.idUsuario}}</td>
+					<td>{{ usuario.nomeUsuario }}</td>
+					<td>{{ usuario.emailUsuario }}</td>
+					<td>{{ usuario.tipoUsuario }}</td>
+
+                    <td class="text-wrap text-center">{% for grupo in usuario.grupo  %}
+						{{grupo.nomeGrupo}} / 
+						{% endfor %}
+					</td>
+					
+					<td class="actions  text-center" >
+						<a 
+							style="background: rgb(65, 65, 65);
+									border-color:rgb(154, 154, 158);
+									margin-left: -40px; 
+									font-size: 12px;" 
+							class="btn btn-success btn-xs"   
+							href="/view/{{usuario.idUsuario}}" >Visualizar</a>
+						<a 
+							style="
+								background: rgb(65, 65, 65);
+								border-color:rgb(154, 154, 158);
+								font-size: 12px;" 
+							class="btn btn-success btn-xs" 
+							href="/edit/{{ usuario.idUsuario }}">Editar</a>
+
+						<button type="button" 
+							class="btn btn-danger btn-xs" 
+							data-bs-toggle="modal" 
+							data-bs-target="#deleteModal" 
+							onclick="confirmar_delete({{ usuario.idUsuario }})"
+							style="font-size: 12px;" >Excluir</button>
+					</td>
+				</tr>
+                    {% endfor %}
+
+			</tbody>
+		</table>
+	</div>
+	
+	
+	
+
+<!-- Modal de Funcões-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header d-flex justify-content-between">
+			<h4 class="modal-title" id="modalLabel">Excluir Item</h4>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+		  Deseja realmente excluir este item?
+		</div>
+		<div class="modal-footer">
+			<button 
+				type="button" class="btn btn-secondary" data-bs-dismiss="modal" 
+				style="background: rgb(65, 65, 65);
+								border-color:rgb(154, 154, 158);">Não</button>
+			<a id="confirmar" class="btn btn-danger btn-xs"   >Sim</a>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+  
+</body>
+{% endblock %}
+
+{% block js %}
+<script>
+	function confirmar_delete(idUsuario) {
+		$("#confirmar").attr("href",`/deletar/${idUsuario}`)
+	}
+</script>
+
+{% endblock %}
